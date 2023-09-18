@@ -1,25 +1,36 @@
 import './App.css';
+import { useState } from "react";
+
+
+const content = [
+  [
+    "Login into existing YCM account."
+  ],
+  [
+    "Create new user(Customer) account."
+  ],
+  [
+    "Create new Car shop account and start provide services."
+  ]
+
+]
+
+
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        {/* <MyButton/> */}
         <div>
           <h2>
             Welcome to YCM - Your car manager!
           </h2>  
         </div>
         <div>
-            <h3>
-              Choose option:
-            </h3>
-        </div>
-        <div>
           <table>
-            <ul><MyButton param={"Login"}/></ul>
-            <ul><MyButton param={"Create User"}/></ul>
-            <ul><MyButton param={"Create Shop"}/></ul>
+            <ul><MyButton btn_txt="Login" index="0"/></ul>
+            <ul><MyButton btn_txt="Create User" index="1"/></ul>
+            <ul><MyButton btn_txt="Create Shop" index="2"/></ul>
           </table>
         </div>
       </header>
@@ -27,9 +38,24 @@ function App() {
   );
 }
 
-function MyButton(main_page_button_opt) {
+function MyButton(props) {
+  const { btn_txt, index } = props
+  const [activeContentIndex, setActiveContentIndex] = useState(0);
   return (
-    <button>{main_page_button_opt.param}</button>
+    <div>
+      <button
+        className={activeContentIndex === index ? "active" : ""}
+        onMouseEnter={() => setActiveContentIndex(index)}
+      > {btn_txt}
+      </button>
+        <div id="tab-content">
+          <ul>
+            {content[activeContentIndex].map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </div>
+    </div>
   );
 }
 
