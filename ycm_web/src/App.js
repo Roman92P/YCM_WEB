@@ -30,11 +30,9 @@ function App() {
           </h2>  
         </div>
         <div>
-          <table>
-            <ul><MyButton btn_txt="Login" index="1"/></ul>
-            <ul><MyButton btn_txt="Create User" index="2"/></ul>
-            <ul><MyButton btn_txt="Create Shop" index="3"/></ul>
-          </table>
+            <h3><MyButton btn_txt="Login" index="1"/></h3>
+            <h3><MyButton btn_txt="Create User" index="2"/></h3>
+            <h3><MyButton btn_txt="Create Shop" index="3"/></h3>
         </div>
       </header>
     </div>
@@ -43,21 +41,29 @@ function App() {
 
 function MyButton(props) {
   const { btn_txt, index } = props
-  const [activeContentIndex, setActiveContentIndex] = useState(0);
+  const [activeContentIndex, setActiveContentIndex] = useState(0)
+  const [isShown, setIsShown] = useState(false)
   return (
     <div>
-      <button
+      <button 
         className={activeContentIndex === index ? "active" : ""}
-        onMouseEnter={() => setActiveContentIndex(index)}
+        onMouseEnter={() => {
+          setActiveContentIndex(index)
+          setIsShown(true)
+        }}
+        onMouseDown={() => {
+          setActiveContentIndex(0)
+          setIsShown(false)
+        }}
       > {btn_txt}
       </button>
+      {isShown && (
         <div id="tab-content">
-          <ul>
             {content[activeContentIndex].map((item) => (
               <span key={item}>{item}</span>
             ))}
-          </ul>
         </div>
+      )}
     </div>
   );
 }
