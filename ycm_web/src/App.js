@@ -44,23 +44,25 @@ function MyButton(props) {
   const [activeContentIndex, setActiveContentIndex] = useState(0)
   const [isShown, setIsShown] = useState(false)
   return (
-    <div>
-      <button 
+    <div onMouseEnter={() => {
+      setActiveContentIndex(index)
+      setIsShown(true)}}>
+      <button
         className={activeContentIndex === index ? "active" : ""}
-        onMouseEnter={() => {
-          setActiveContentIndex(index)
-          setIsShown(true)
-        }}
-        onMouseDown={() => {
+        onMouseUp={() => {
           setActiveContentIndex(0)
           setIsShown(false)
-        }}
-      > {btn_txt}
+        }}>{btn_txt}
       </button>
       {isShown && (
         <div id="tab-content">
             {content[activeContentIndex].map((item) => (
-              <span key={item}>{item}</span>
+              <span key={item}
+                onMouseEnter={() => {
+                setActiveContentIndex(0)
+                setIsShown(false)
+              }}
+              >{item}</span>
             ))}
         </div>
       )}

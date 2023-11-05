@@ -12,3 +12,12 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+
+#tab-content {
+  cursor: pointer;
+  font-size: 20px;
+  margin: 20px;
+  display: inline-block;
+  font-weight: bold;
+  position: fixed;
+}
