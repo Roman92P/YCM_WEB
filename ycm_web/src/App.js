@@ -4,6 +4,9 @@ import { useState } from "react";
 
 const content = [
   [
+    ""
+  ],
+  [
     "Login into existing YCM account."
   ],
   [
@@ -28,9 +31,9 @@ function App() {
         </div>
         <div>
           <table>
-            <ul><MyButton btn_txt="Login" index="0"/></ul>
-            <ul><MyButton btn_txt="Create User" index="1"/></ul>
-            <ul><MyButton btn_txt="Create Shop" index="2"/></ul>
+            <ul><MyButton btn_txt="Login" index="1"/></ul>
+            <ul><MyButton btn_txt="Create User" index="2"/></ul>
+            <ul><MyButton btn_txt="Create Shop" index="3"/></ul>
           </table>
         </div>
       </header>
@@ -51,7 +54,7 @@ function MyButton(props) {
         <div id="tab-content">
           <ul>
             {content[activeContentIndex].map((item) => (
-              <li key={item}>{item}</li>
+              <span key={item}>{item}</span>
             ))}
           </ul>
         </div>
